@@ -16,15 +16,6 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
-    <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
-    <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/" />
         <property name="suffix" value=".jsp" />
@@ -33,7 +24,7 @@
     <!-- 开启注解模式 -->
     <mvc:annotation-driven/>
 
-    <!--<mvc:resources mapping="/common/**" location="/common/"/>-->
+    <mvc:resources mapping="/static/**" location="/static/"/>
 
     <!-- 按照后缀来配置,和文件夹配置结合就比较简单了 -->
     <mvc:resources location="/" mapping="/**/*.html"/>
