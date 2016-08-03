@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <h1>From data</h1>
-        <table id="table" data-pagination="true" data-click-to-select="true">
+        <table id="table" data-pagination="true" data-click-to-select="true" data-height="400">
             <thead>
             <tr>
                 <th data-field="id" data-checkbox="true">ID</th>
