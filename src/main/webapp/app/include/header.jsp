@@ -7,6 +7,7 @@
 <script src="${ctx}/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/plugins/bootstrap-table/bootstrap-table.min.js"></script>
 <script src="${ctx}/static/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="${ctx}/static/plugins/layer/layer.js"></script>
 <!--[if lt IE 9]>
 <script src="${ctx}/static/source/js/html5shiv.min.js"></script>
 <script src="${ctx}/static/source/js/respond.min.js"></script>

@@ -111,7 +111,7 @@
     <dl class="cloud">
         <dt>系统配置<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
         <dd class="first_dd"><a href="javascript:;" class="menu">特征配置</a></dd>
-        <dd><a href="javascript:;" class="menu">标准配置</a></dd>
+        <dd><a href="javascript:;" class="menu" name="${ctx}/config/standard">标准配置</a></dd>
         <dd><a href="javascript:;" class="menu">有效期配置</a></dd>
     </dl>
 

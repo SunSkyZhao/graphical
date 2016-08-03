@@ -1,16 +1,14 @@
-package cn.gov.cnis.graphical.dao;
+package cn.gov.cnis.graphical.service;
 
 import cn.gov.cnis.graphical.model.StandardRange;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author :  Amayadream
- * @date :  2016.08.03 20:32
+ * @date :  2016.08.03 21:56
  */
-@Repository
-public interface IStandardRangeDao {
+public interface IStandardRangeService {
 
     List<StandardRange> selectByType(String rangeType);
 
