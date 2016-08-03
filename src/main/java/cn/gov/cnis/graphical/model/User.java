@@ -9,20 +9,20 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 
-    /** 用户编号 */
+    /** 编号 */
     private String guid;
     /** 登录账号 */
-    private String userid;
+    private String userId;
     /** 登录密码 */
     private String password;
     /** 真实姓名 */
-    private String realname;
+    private String realName;
     /** 用户角色 */
     private String role;
     /** 电话 */
     private String telephone;
     /** 手机 */
-    private String mobilephone;
+    private String mobile;
     /** 单位名称 */
     private String company;
     /** 联系地址 */
@@ -30,9 +30,9 @@ public class User implements Serializable {
     /** 邮箱 */
     private String mail;
     /** 注册时间 */
-    private String firsttime;
+    private String firstTime;
     /** 最后登录时间 */
-    private String lasttime;
+    private String lastTime;
     /** 状态 */
     private int status;
 
@@ -45,12 +45,12 @@ public class User implements Serializable {
         this.guid = guid;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
@@ -61,12 +61,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getRole() {
@@ -85,12 +85,12 @@ public class User implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getMobilephone() {
-        return mobilephone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMobilephone(String mobilephone) {
-        this.mobilephone = mobilephone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getCompany() {
@@ -117,20 +117,20 @@ public class User implements Serializable {
         this.mail = mail;
     }
 
-    public String getFirsttime() {
-        return firsttime;
+    public String getFirstTime() {
+        return firstTime;
     }
 
-    public void setFirsttime(String firsttime) {
-        this.firsttime = firsttime;
+    public void setFirstTime(String firstTime) {
+        this.firstTime = firstTime;
     }
 
-    public String getLasttime() {
-        return lasttime;
+    public String getLastTime() {
+        return lastTime;
     }
 
-    public void setLasttime(String lasttime) {
-        this.lasttime = lasttime;
+    public void setLastTime(String lastTime) {
+        this.lastTime = lastTime;
     }
 
     public int getStatus() {

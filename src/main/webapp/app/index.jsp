@@ -54,10 +54,11 @@
     </style>
 </head>
 <body>
+<!-- 头部 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">标准图形符号数据库系统</a>
+            <a class="navbar-brand" href="#">标准图形符号在线浏览平台</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -80,65 +81,68 @@
     </div>
 </nav>
 
+<!-- 侧边栏 -->
 <div class="side">
     <div class="line"></div>
     <dl class="system_log">
-        <dt onClick="changeImage()">标准符号<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">标志用符号</a></dd>
-        <dd><a href="#">设备用符号</a></dd>
-        <dd><a href="#">技术文件用符号</a></dd>
+        <dt>标准符号<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
+        <dd class="first_dd"><a href="javascript:;" class="menu" name="${ctx}/demo">标志用符号</a></dd>
+        <dd><a href="javascript:;" class="menu">设备用符号</a></dd>
+        <dd><a href="javascript:;" class="menu">技术文件用符号</a></dd>
     </dl>
 
     <dl class="custom">
-        <dt onClick="changeImage()">非标准符号<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">非标准符号</a></dd>
+        <dt>非标准符号<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
+        <dd class="first_dd"><a href="javascript:;" class="menu">非标准符号</a></dd>
     </dl>
 
     <dl class="channel">
         <dt>注册符号<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">标志用符号</a></dd>
-        <dd><a href="#">设备用符号</a></dd>
-        <dd><a href="#">技术文件用符号</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu">标志用符号</a></dd>
+        <dd><a href="javascript:;" class="menu">设备用符号</a></dd>
+        <dd><a href="javascript:;" class="menu">技术文件用符号</a></dd>
     </dl>
 
     <dl class="app">
-        <dt onClick="changeImage(this)">标准简介<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">标准简介</a></dd>
+        <dt>标准简介<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
+        <dd class="first_dd"><a href="javascript:;" class="menu">标准简介</a></dd>
     </dl>
 
     <dl class="cloud">
         <dt>系统配置<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">特征配置</a></dd>
-        <dd><a href="#">标准配置</a></dd>
-        <dd><a href="#">有效期配置</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu">特征配置</a></dd>
+        <dd><a href="javascript:;" class="menu">标准配置</a></dd>
+        <dd><a href="javascript:;" class="menu">有效期配置</a></dd>
     </dl>
 
     <dl class="syetem_management">
         <dt>系统管理<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">系统简介</a></dd>
-        <dd><a href="#">更新历史</a></dd>
-        <dd><a href="#">用户登录统计</a></dd>
-        <dd><a href="#">系统日志</a></dd>
-        <dd><a href="#">符号下载统计</a></dd>
-        <dd><a href="#">数据库备份与还原</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu">系统简介</a></dd>
+        <dd><a href="javascript:;" class="menu">更新历史</a></dd>
+        <dd><a href="javascript:;" class="menu">用户登录统计</a></dd>
+        <dd><a href="javascript:;" class="menu">系统日志</a></dd>
+        <dd><a href="javascript:;" class="menu">符号下载统计</a></dd>
+        <dd><a href="javascript:;" class="menu">数据库备份与还原</a></dd>
     </dl>
 
     <dl class="source">
         <dt>用户管理<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">注册用户管理</a></dd>
-        <dd><a href="#">特许用户管理</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu">注册用户管理</a></dd>
+        <dd><a href="javascript:;" class="menu">特许用户管理</a></dd>
     </dl>
 
     <dl class="statistics">
         <dt>统计分析<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="#">客户统计</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu">客户统计</a></dd>
     </dl>
 </div>
 
+<!-- 正文 -->
 <div class="content">
     <iframe id="iframe" scrolling="auto" frameborder="0" style="width: 100%;height:100%;"></iframe>
 </div>
 
+<!-- 脚部 -->
 <div class="footer">
     版权所有：中国标准化研究院基础标准化研究所 京ICP备10046988号-13
 </div>
@@ -159,7 +163,12 @@
             $(this).parent().find('dd').addClass("menu_chioce");
         });
     });
-    $("#iframe").attr("src", "${ctx}/index1.jsp");
+
+    $(".menu").click(function(){
+        if($(this).attr("name")){
+            $("#iframe").attr("src", $(this).attr("name"));
+        }
+    });
 </script>
 </body>
 </html>

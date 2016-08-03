@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.cnis.graphical.dao.IStandardRangeDao">
+    <resultMap id="BaseResultMap" type="cn.gov.cnis.graphical.model.StandardRange">
+        <id column="guid" property="guid" jdbcType="VARCHAR"/>
+        <result column="rangeName" property="rangeName" jdbcType="VARCHAR"/>
+        <result column="rangeCode" property="rangeCode" jdbcType="VARCHAR"/>
+        <result column="rangeType" property="rangeType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        guid, rangeName, rangeCode, rangeType
+    </sql>
+
+    <!-- 查询所有用户 -->
+    <select id="select" resultMap="BaseResultMap">
+        SELECT * FROM
+            (
+                SELECT A.*,ROWNUM RN
+                FROM
+                    (
+                        SELECT * FROM TAB_STANDARD_RANGE
+                        ORDER BY rangeName
+                    ) A
+            )
+        WHERE RN BETWEEN #{startRow} and #{endRow}
+    </select>
+
+    <insert id="insert" parameterType="cn.gov.cnis.graphical.model.StandardRange">
+      INSERT INTO TAB_STANDARD_RANGE (guid, rangeName, rangeCode, rangeType)
+      VALUES(#{guid, jdbcType=VARCHAR}, #{rangeName, jdbcType=VARCHAR}, #{rangeCode, jdbcType=VARCHAR}, #{rangeType, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="cn.gov.cnis.graphical.model.StandardRange">
+      UPDATE TAB_STANDARD_RANGE
+      <set>
+          <if test="rangeName != null and rangeName != ''">
+              rangeName = #{rangeName, jdbcType=VARCHAR},
+          </if>
+          <if test="rangeCode != null and rangeCode != ''">
+              rangeCode = #{rangeCode, jdbcType=VARCHAR},
+          </if>
+          <if test="rangeType != null and rangeType != ''">
+              rangeType = #{rangeType, jdbcType=VARCHAR},
+          </if>
+      </set>
+      WHERE guid = #{guid, jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+      DELETE FROM TAB_STANDARD_RANGE WHERE guid = #{guid, jdbcType=VARCHAR}
+    </delete>
+</mapper>

@@ -7,16 +7,16 @@
     <jsp:include page="${ctx}/app/include/header.jsp"/>
 </head>
 <body>
-    <h1>From data</h1>
-    <table id="table" data-pagination="true" data-click-to-select="true" data-height="400">
-        <thead>
-        <tr>
-            <th data-field="id" data-checkbox="true">ID</th>
-            <th data-field="name">Item Name</th>
-            <th data-field="price" data-formatter="priceFormatter">Item Price</th>
-        </tr>
-        </thead>
-    </table>
+<h1>From data</h1>
+<table id="table" data-pagination="true" data-click-to-select="true" data-height="400">
+    <thead>
+    <tr>
+        <th data-field="id" data-checkbox="true">ID</th>
+        <th data-field="name">Item Name</th>
+        <th data-field="price" data-formatter="priceFormatter">Item Price</th>
+    </tr>
+    </thead>
+</table>
 
 <script>
     function priceFormatter(value, row){
