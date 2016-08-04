@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.cnis.graphical.dao.IStandardDao">
+    <resultMap id="BaseResultMap" type="cn.gov.cnis.graphical.model.Standard">
+        <id column="guid" property="guid" jdbcType="VARCHAR"/>
+        <result column="chineseName" property="chineseName" jdbcType="VARCHAR"/>
+        <result column="foreignName" property="foreignName" jdbcType="VARCHAR"/>
+        <result column="identifier" property="identifier" jdbcType="VARCHAR"/>
+        <result column="range" property="range" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="replaceInfo" property="replaceInfo" jdbcType="VARCHAR"/>
+        <result column="adoptInfo" property="adoptInfo" jdbcType="VARCHAR"/>
+        <result column="proposeCompany" property="proposeCompany" jdbcType="VARCHAR"/>
+        <result column="draftCompany" property="draftCompany" jdbcType="VARCHAR"/>
+        <result column="draftPerson" property="draftPerson" jdbcType="VARCHAR"/>
+        <result column="occupyCompany" property="occupyCompany" jdbcType="VARCHAR"/>
+        <result column="releaseHistory" property="releaseHistory" jdbcType="VARCHAR"/>
+        <result column="useScope" property="useScope" jdbcType="VARCHAR"/>
+        <result column="attachment" property="attachment" jdbcType="VARCHAR"/>
+        <result column="keyword" property="keyword" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT * FROM tab_standard ORDER BY identifier LIMIT #{start}, #{end}
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM tab_standard
+    </select>
+
+    <insert id="insert" parameterType="cn.gov.cnis.graphical.model.Standard">
+        INSERT INTO tab_standard (guid, chineseName, foreignName, identifier, range, status, replaceInfo,
+        adoptInfo, proposeCompany, draftCompany, draftPerson, occupyCompany, releaseHistory, useScope, attachment, keyword)
+        VALUES(#{guid, jdbcType=VARCHAR}, #{chineseName, jdbcType=VARCHAR}, #{foreignName, jdbcType=VARCHAR}, #{identifier, jdbcType=VARCHAR},
+        #{range, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, #{replaceInfo, jdbcType=VARCHAR}, #{adoptInfo, jdbcType=VARCHAR}, #{proposeCompany, jdbcType=VARCHAR},
+        #{draftCompany, jdbcType=VARCHAR}, #{draftPerson, jdbcType=VARCHAR}, #{occupyCompany, jdbcType=VARCHAR}, #{releaseHistory, jdbcType=VARCHAR},
+        #{useScope, jdbcType=VARCHAR},#{attachment, jdbcType=VARCHAR}, #{keyword, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="cn.gov.cnis.graphical.model.Standard">
+        UPDATE tab_standard
+        <set>
+            <if test="chineseName != null and chineseName != ''">
+                chineseName = #{chineseName, jdbcType=VARCHAR},
+            </if>
+            <if test="foreignName != null and foreignName != ''">
+                foreignName = #{foreignName, jdbcType=VARCHAR},
+            </if>
+            <if test="identifier != null and identifier != ''">
+                identifier = #{identifier, jdbcType=VARCHAR},
+            </if>
+            <if test="range != null and range != ''">
+                range = #{range, jdbcType=VARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status, jdbcType=VARCHAR},
+            </if>
+            <if test="replaceInfo != null and replaceInfo != ''">
+                replaceInfo = #{replaceInfo, jdbcType=VARCHAR},
+            </if>
+            <if test="adoptInfo != null and adoptInfo != ''">
+                adoptInfo = #{adoptInfo, jdbcType=VARCHAR},
+            </if>
+            <if test="proposeCompany != null and proposeCompany != ''">
+                proposeCompany = #{proposeCompany, jdbcType=VARCHAR},
+            </if>
+            <if test="draftCompany != null and draftCompany != ''">
+                draftCompany = #{draftCompany, jdbcType=VARCHAR},
+            </if>
+            <if test="draftPerson != null and draftPerson != ''">
+                draftPerson = #{draftPerson, jdbcType=VARCHAR},
+            </if>
+            <if test="occupyCompany != null and occupyCompany != ''">
+                occupyCompany = #{occupyCompany, jdbcType=VARCHAR},
+            </if>
+            <if test="releaseHistory != null and releaseHistory != ''">
+                releaseHistory = #{releaseHistory, jdbcType=VARCHAR},
+            </if>
+            <if test="useScope != null and useScope != ''">
+                useScope = #{useScope, jdbcType=VARCHAR},
+            </if>
+            <if test="attachment != null and attachment != ''">
+                attachment = #{attachment, jdbcType=VARCHAR},
+            </if>
+            <if test="keyword != null and keyword != ''">
+                keyword = #{keyword, jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE guid = #{guid, jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM tab_standard
+        <where>
+            guid in
+            <foreach collection="guids" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+</mapper>

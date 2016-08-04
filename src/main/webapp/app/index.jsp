@@ -3,7 +3,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="en">
 <head>
-    <title>标准图形符号数据库系统</title>
+    <title>标准图形符号在线浏览平台</title>
     <jsp:include page="${ctx}/app/include/header.jsp"/>
     <style type="text/css">
         .side {
@@ -58,7 +58,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">标准图形符号在线浏览平台</a>
+            <a class="navbar-brand" href="${ctx}/index">标准图形符号在线浏览平台</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -105,7 +105,7 @@
 
     <dl class="app">
         <dt>标准简介<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="javascript:;" class="menu">标准简介</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu" name="${ctx}/standard">标准简介</a></dd>
     </dl>
 
     <dl class="cloud">

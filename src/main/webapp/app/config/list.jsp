@@ -20,25 +20,25 @@
 <div class="tab-content">
     <div class="tab-pane active" id="domestic">
         <div class="toolbar-domestic">
-            <button class="btn btn-default" onclick="add();">添加</button>
-            <button class="btn btn-default" onclick="edit();">编辑</button>
-            <button class="btn btn-default" onclick="del();">删除</button>
+            <button class="btn btn-sm btn-success" onclick="add();"><span class="glyphicon glyphicon-plus"></span> 添加</button>
+            <button class="btn btn-sm btn-success" onclick="edit();"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
+            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
         </div>
         <table id="table-domestic"></table>
     </div>
     <div class="tab-pane" id="international">
         <div class="toolbar-international">
-            <button class="btn btn-default" onclick="add()">添加</button>
-            <button class="btn btn-default" onclick="edit();">编辑</button>
-            <button class="btn btn-default" onclick="del();">删除</button>
+            <button class="btn btn-sm btn-success" onclick="add();"><span class="glyphicon glyphicon-plus"></span> 添加</button>
+            <button class="btn btn-sm btn-success" onclick="edit();"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
+            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
         </div>
         <table id="table-international"></table>
     </div>
     <div class="tab-pane" id="abroad">
         <div class="toolbar-abroad">
-            <button class="btn btn-default" onclick="add()">添加</button>
-            <button class="btn btn-default" onclick="edit();">编辑</button>
-            <button class="btn btn-default" onclick="del();">删除</button>
+            <button class="btn btn-sm btn-success" onclick="add();"><span class="glyphicon glyphicon-plus"></span> 添加</button>
+            <button class="btn btn-sm btn-success" onclick="edit();"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
+            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
         </div>
         <table id="table-abroad"></table>
     </div>
@@ -88,11 +88,10 @@
     }
     $(function() {
         $('#tab a:first').tab('show');//初始化显示哪个tab
-        showTable("domestic");
-        showTable("international");
-        showTable("abroad");
+        showTable(tab);
         $('#tab a').click(function(e) {
             tab = $(this).attr("name");
+            showTable(tab);
             e.preventDefault();//阻止a链接的跳转行为
             $(this).tab('show');//显示当前选中的链接及关联的content
         });
@@ -102,7 +101,7 @@
             url: "${ctx}/config/standard/" + tab,
             dataType: "json",
             singleSelect: false,
-            height: 550,
+            height: 500,
             toolbar: ".toolbar-" + tab,
             striped: true,      //是否显示行间隔色
             cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

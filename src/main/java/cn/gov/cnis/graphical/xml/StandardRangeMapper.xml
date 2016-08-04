@@ -12,9 +12,9 @@
         guid, rangeName, rangeCode, rangeType
     </sql>
 
-    <!-- 查询所有用户 -->
     <select id="selectByType" resultMap="BaseResultMap" parameterType="string">
         SELECT * FROM tab_standard_range WHERE rangeType = #{rangeType, jdbcType=VARCHAR}
+        ORDER BY rangeName
     </select>
 
     <insert id="insert" parameterType="cn.gov.cnis.graphical.model.StandardRange">

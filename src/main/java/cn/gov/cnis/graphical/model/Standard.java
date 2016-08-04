@@ -20,7 +20,7 @@ public class Standard implements Serializable {
     /** 标准范围 */
     private String range;
     /** 标准状态, 0:现行, -1废弃, -2被替代 */
-    private int status;
+    private String status;
     /** 替代情况 */
     private String replaceInfo;
     /** 采标程度 */
@@ -35,6 +35,8 @@ public class Standard implements Serializable {
     private String occupyCompany;
     /** 历次发布 */
     private String releaseHistory;
+    /** 适用范围 */
+    private String useScope;
     /** 标准全文 */
     private String attachment;
     /** 关键词 */
@@ -81,11 +83,11 @@ public class Standard implements Serializable {
         this.range = range;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -143,6 +145,14 @@ public class Standard implements Serializable {
 
     public void setReleaseHistory(String releaseHistory) {
         this.releaseHistory = releaseHistory;
+    }
+
+    public String getUseScope() {
+        return useScope;
+    }
+
+    public void setUseScope(String useScope) {
+        this.useScope = useScope;
     }
 
     public String getAttachment() {
