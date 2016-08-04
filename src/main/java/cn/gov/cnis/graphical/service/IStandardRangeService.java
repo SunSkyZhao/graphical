@@ -16,6 +16,6 @@ public interface IStandardRangeService {
 
     int update(StandardRange range);
 
-    int delete(String rangeType);
+    int delete(List<String> guids);
 
 }

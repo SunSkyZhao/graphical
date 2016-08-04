@@ -23,22 +23,28 @@
     </insert>
 
     <update id="update" parameterType="cn.gov.cnis.graphical.model.StandardRange">
-      UPDATE tab_standard_range
-      <set>
-          <if test="rangeName != null and rangeName != ''">
-              rangeName = #{rangeName, jdbcType=VARCHAR},
-          </if>
-          <if test="rangeCode != null and rangeCode != ''">
-              rangeCode = #{rangeCode, jdbcType=VARCHAR},
-          </if>
-          <if test="rangeType != null and rangeType != ''">
-              rangeType = #{rangeType, jdbcType=VARCHAR},
-          </if>
-      </set>
-      WHERE guid = #{guid, jdbcType=VARCHAR}
+        UPDATE tab_standard_range
+        <set>
+            <if test="rangeName != null and rangeName != ''">
+                rangeName = #{rangeName, jdbcType=VARCHAR},
+            </if>
+            <if test="rangeCode != null and rangeCode != ''">
+                rangeCode = #{rangeCode, jdbcType=VARCHAR},
+            </if>
+            <!--<if test="rangeType != null and rangeType != ''">-->
+                <!--rangeType = #{rangeType, jdbcType=VARCHAR},-->
+            <!--</if>-->
+        </set>
+        WHERE guid = #{guid, jdbcType=VARCHAR}
     </update>
 
-    <delete id="delete" parameterType="string">
-      DELETE FROM tab_standard_range WHERE guid = #{guid, jdbcType=VARCHAR}
+    <delete id="delete">
+        DELETE FROM tab_standard_range
+        <where>
+            guid in
+            <foreach collection="guids" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
     </delete>
 </mapper>

@@ -22,7 +22,7 @@
         <div class="toolbar-domestic">
             <button class="btn btn-default" onclick="add();">添加</button>
             <button class="btn btn-default" onclick="edit();">编辑</button>
-            <button class="btn btn-default">删除</button>
+            <button class="btn btn-default" onclick="del();">删除</button>
         </div>
         <table id="table-domestic"></table>
     </div>
@@ -30,7 +30,7 @@
         <div class="toolbar-international">
             <button class="btn btn-default" onclick="add()">添加</button>
             <button class="btn btn-default" onclick="edit();">编辑</button>
-            <button class="btn btn-default">删除</button>
+            <button class="btn btn-default" onclick="del();">删除</button>
         </div>
         <table id="table-international"></table>
     </div>
@@ -38,7 +38,7 @@
         <div class="toolbar-abroad">
             <button class="btn btn-default" onclick="add()">添加</button>
             <button class="btn btn-default" onclick="edit();">编辑</button>
-            <button class="btn btn-default">删除</button>
+            <button class="btn btn-default" onclick="del();">删除</button>
         </div>
         <table id="table-abroad"></table>
     </div>
@@ -53,19 +53,19 @@
             </div>
             <form action="#" method="post" id="add-form">
                 <div class="modal-body">
-                    <input type="hidden" id="guid">
-                    <input type="hidden" id="rangeType">
+                    <input type="hidden" id="guid" name="guid">
+                    <input type="hidden" id="rangeType" name="rangeType">
                     <div class="form-group">
                         <label for="rangeName">标准名称</label>
-                        <input type="text" class="form-control" id="rangeName" placeholder="请输入标准名称,最大长度10位" required>
+                        <input type="text" class="form-control" id="rangeName" name="rangeName" placeholder="请输入标准名称,最大长度10位" required>
                     </div>
                     <div class="form-group">
                         <label for="rangeCode">标准代码</label>
-                        <input type="text" class="form-control" id="rangeCode" placeholder="请输入标准代码,最大长度30位" required>
+                        <input type="text" class="form-control" id="rangeCode" name="rangeCode" placeholder="请输入标准代码,最大长度30位" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm();">提交</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </form>
@@ -75,13 +75,25 @@
 
 <script>
     var tab = "domestic";
+    if("${message}"){
+        layer.msg('${message}', {
+            offset: 0
+        });
+    }
+    if("${error}"){
+        layer.msg('${error}', {
+            offset: 0,
+            shift: 6
+        });
+    }
     $(function() {
         $('#tab a:first').tab('show');//初始化显示哪个tab
-        showTable(tab);
+        showTable("domestic");
+        showTable("international");
+        showTable("abroad");
         $('#tab a').click(function(e) {
             tab = $(this).attr("name");
             e.preventDefault();//阻止a链接的跳转行为
-            showTable(tab);
             $(this).tab('show');//显示当前选中的链接及关联的content
         });
     });
@@ -90,7 +102,7 @@
             url: "${ctx}/config/standard/" + tab,
             dataType: "json",
             singleSelect: false,
-            height: 500,
+            height: 550,
             toolbar: ".toolbar-" + tab,
             striped: true,      //是否显示行间隔色
             cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -116,9 +128,10 @@
     }
     function add() {
         clearForm();
-        $("#add-form").attr("action", "${ctx}/config/insert/" + tab);
+        $("#add-form").attr("action", "${ctx}/config/standard/insert/" + tab);
         $('#add-modal').modal({})
     }
+
     function edit(){
         clearForm();
         var object = $("#table-"+tab).bootstrapTable("getAllSelections");
@@ -131,6 +144,7 @@
                 $("#rangeType").val(object[0].rangeType);
                 $("#rangeName").val(object[0].rangeName);
                 $("#rangeCode").val(object[0].rangeCode);
+                $("#add-form").attr("action", "${ctx}/config/standard/update");
                 $('#add-modal').modal({});
                 break;
             default:
@@ -138,6 +152,57 @@
                 break;
         }
     }
+    function del(){
+        var object = $("#table-"+tab).bootstrapTable("getAllSelections");
+        switch (object.length){
+            case 0:
+                layer.msg("至少选择一行!", { offset: 0, shift: 6 });
+                break;
+            case 1:
+            default:
+                var guids = [];
+                $.each(object, function(index, item){
+                    guids.push(item.guid);
+                });
+                $.getJSON("${ctx}/config/standard/delete?guids=" + guids, function(data){
+                    if(eval(data).code == 1){
+                        $("#table-"+tab).bootstrapTable("refresh");
+                        layer.msg("操作成功!", { offset: 0});
+                    }else{
+                        layer.msg("操作失败,请重试!", { offset: 0, shift: 6 });
+                    }
+                });
+                break;
+        }
+    }
+
+    function submitForm(){
+        $.ajax({
+            url: $("#add-form").attr("action"),
+            dataType: "json",
+            type: "post",
+            data: {
+                guid: $("#guid").val(),
+                rangeType: $("#rangeType").val(),
+                rangeName: $("#rangeName").val(),
+                rangeCode: $("#rangeCode").val()
+            },
+            success: function(data){
+                if(eval(data).code == 1){
+                    $('#add-modal').modal('hide');
+                    $("#table-"+tab).bootstrapTable("refresh");
+                    layer.msg("操作成功!", { offset: 0});
+                }else{
+                    $('#add-modal').modal('hide');
+                    layer.msg("操作失败,请重试!", { offset: 0, shift: 6 });
+                }
+            },
+            error: function(){
+                layer.msg("系统错误,请重试!", { offset: 0, shift: 6 });
+            }
+        })
+    }
+
     function clearForm(){
         $("#guid").val("");
         $("#rangeType").val("");

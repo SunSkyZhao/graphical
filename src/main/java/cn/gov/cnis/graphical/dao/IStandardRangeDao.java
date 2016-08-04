@@ -1,6 +1,7 @@
 package cn.gov.cnis.graphical.dao;
 
 import cn.gov.cnis.graphical.model.StandardRange;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +19,6 @@ public interface IStandardRangeDao {
 
     int update(StandardRange range);
 
-    int delete(String rangeType);
+    int delete(@Param("guids") List<String> guids);
 
 }
