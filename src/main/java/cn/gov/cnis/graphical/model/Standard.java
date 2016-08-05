@@ -18,7 +18,9 @@ public class Standard implements Serializable {
     /** 标准编号 */
     private String identifier;
     /** 标准范围 */
-    private String range;
+    private String standardRange;
+    /** 符号范围 */
+    private String symbolRange;
     /** 标准状态, 0:现行, -1废弃, -2被替代 */
     private String status;
     /** 替代情况 */
@@ -39,6 +41,8 @@ public class Standard implements Serializable {
     private String useScope;
     /** 标准全文 */
     private String attachment;
+    /** 文件路径 */
+    private String filePath;
     /** 关键词 */
     private String keyword;
 
@@ -75,12 +79,20 @@ public class Standard implements Serializable {
         this.identifier = identifier;
     }
 
-    public String getRange() {
-        return range;
+    public String getStandardRange() {
+        return standardRange;
     }
 
-    public void setRange(String range) {
-        this.range = range;
+    public void setStandardRange(String standardRange) {
+        this.standardRange = standardRange;
+    }
+
+    public String getSymbolRange() {
+        return symbolRange;
+    }
+
+    public void setSymbolRange(String symbolRange) {
+        this.symbolRange = symbolRange;
     }
 
     public String getStatus() {
@@ -161,6 +173,14 @@ public class Standard implements Serializable {
 
     public void setAttachment(String attachment) {
         this.attachment = attachment;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public String getKeyword() {

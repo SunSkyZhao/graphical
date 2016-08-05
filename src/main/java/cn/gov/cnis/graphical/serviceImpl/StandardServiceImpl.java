@@ -29,6 +29,11 @@ public class StandardServiceImpl implements IStandardService {
     }
 
     @Override
+    public Standard selectByPrimaryKey(String guid) {
+        return standardDao.selectByPrimaryKey(guid);
+    }
+
+    @Override
     public int insert(Standard standard) {
         return standardDao.insert(standard);
     }

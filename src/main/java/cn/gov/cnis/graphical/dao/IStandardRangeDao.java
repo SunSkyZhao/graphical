@@ -15,6 +15,8 @@ public interface IStandardRangeDao {
 
     List<StandardRange> selectByType(String rangeType);
 
+    StandardRange selectByPrimaryKey(String guid);
+
     int insert(StandardRange range);
 
     int update(StandardRange range);

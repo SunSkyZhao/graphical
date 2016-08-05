@@ -14,6 +14,8 @@ public interface IStandardService {
 
     long count();
 
+    Standard selectByPrimaryKey(String guid);
+
     int insert(Standard standard);
 
     int update(Standard standard);

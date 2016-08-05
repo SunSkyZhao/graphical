@@ -22,6 +22,11 @@ public class StandardRangeServiceImpl implements IStandardRangeService {
         return standardRangeDao.selectByType(rangeType);
     }
 
+    @Override
+    public StandardRange selectByPrimaryKey(String guid) {
+        return standardRangeDao.selectByPrimaryKey(guid);
+    }
+
     public int insert(StandardRange range) {
         return standardRangeDao.insert(range);
     }

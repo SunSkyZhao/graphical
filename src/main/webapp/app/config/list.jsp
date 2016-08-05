@@ -4,6 +4,14 @@
 <html lang="en">
 <head>
     <title>标准配置</title>
+    <!--支持IE-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--支持移动设备,禁用缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 关键词 -->
+    <meta name="keywords" content="标准, 图形, 符号, 在线浏览" />
+    <!-- 描述语 -->
+    <meta name="Description" content="标准图形符号在线浏览平台">
     <jsp:include page="${ctx}/app/include/header.jsp"/>
 </head>
 <body>
@@ -22,7 +30,7 @@
         <div class="toolbar-domestic">
             <button class="btn btn-sm btn-success" onclick="add();"><span class="glyphicon glyphicon-plus"></span> 添加</button>
             <button class="btn btn-sm btn-success" onclick="edit();"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
-            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
+            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-trash"></span> 删除</button>
         </div>
         <table id="table-domestic"></table>
     </div>
@@ -30,7 +38,7 @@
         <div class="toolbar-international">
             <button class="btn btn-sm btn-success" onclick="add();"><span class="glyphicon glyphicon-plus"></span> 添加</button>
             <button class="btn btn-sm btn-success" onclick="edit();"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
-            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
+            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-trash"></span> 删除</button>
         </div>
         <table id="table-international"></table>
     </div>
@@ -38,7 +46,7 @@
         <div class="toolbar-abroad">
             <button class="btn btn-sm btn-success" onclick="add();"><span class="glyphicon glyphicon-plus"></span> 添加</button>
             <button class="btn btn-sm btn-success" onclick="edit();"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
-            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
+            <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-trash"></span> 删除</button>
         </div>
         <table id="table-abroad"></table>
     </div>

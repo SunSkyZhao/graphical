@@ -15,6 +15,8 @@ public interface IStandardDao {
 
     List<Standard> list(@Param("start") int start, @Param("end") int end);
 
+    Standard selectByPrimaryKey(String guid);
+
     long count();
 
     int insert(Standard standard);

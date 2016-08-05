@@ -17,6 +17,10 @@
         ORDER BY rangeName
     </select>
 
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="string">
+        SELECT * FROM tab_standard_range WHERE guid = #{guid, jdbcType=VARCHAR}
+    </select>
+
     <insert id="insert" parameterType="cn.gov.cnis.graphical.model.StandardRange">
       INSERT INTO tab_standard_range (guid, rangeName, rangeCode, rangeType)
       VALUES(#{guid, jdbcType=VARCHAR}, #{rangeName, jdbcType=VARCHAR}, #{rangeCode, jdbcType=VARCHAR}, #{rangeType, jdbcType=VARCHAR})

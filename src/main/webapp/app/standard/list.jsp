@@ -4,6 +4,14 @@
 <html lang="en">
 <head>
     <title>标准配置</title>
+    <!--支持IE-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--支持移动设备,禁用缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 关键词 -->
+    <meta name="keywords" content="标准, 图形, 符号, 在线浏览" />
+    <!-- 描述语 -->
+    <meta name="Description" content="标准图形符号在线浏览平台">
     <jsp:include page="${ctx}/app/include/header.jsp"/>
 </head>
 <body>
@@ -14,7 +22,7 @@
 
 <div class="toolbar">
     <button class="btn btn-sm btn-success" onclick="window.location='${ctx}/standard/add'"><span class="glyphicon glyphicon-plus"></span> 添加</button>
-    <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-remove"></span> 删除</button>
+    <button class="btn btn-sm btn-danger" onclick="del();"><span class="glyphicon glyphicon-trash"></span> 删除</button>
 </div>
 <table id="table"></table>
 
@@ -76,7 +84,7 @@
             pageSize: 8,      //每页的记录行数（*）
             pageList: [8, 16, 32],  //可供选择的每页的行数（*）
             uniqueId: "guid",
-            clickToSelect: true,    //是否启用点击选中行
+            clickToSelect: false,    //是否启用点击选中行
             showRefresh: false,     //是否显示刷新按钮
             showColumns: false,     //是否显示所有的列
             search: true, //显示搜索框
@@ -86,10 +94,15 @@
                 {title: "标准编号", field: "identifier", align: "left", halign: "center"},
                 {title: "中文名称", field: "chineseName", align: "left", halign: "center"},
                 {title: "外文名称", field: "foreignName", align: "left", halign: "center"},
-                {title: "状态", field: "status", align: "center", formatter: formatterStatus, valign: "middle"}
+                {title: "状态", field: "status", align: "center", formatter: formatterStatus, valign: "middle"},
+                {title: "详情", field: "none", align: "center", formatter: formatterDetail, valign: "middle"},
             ]
         });
     });
+
+    function formatterDetail(value, row, index){
+        return "<a href='${ctx}/standard/detail/"+row.guid+"'><span class=\"glyphicon glyphicon-search\"></span></a>";
+    }
 
     function formatterStatus(value, row, index){
         switch (value){
