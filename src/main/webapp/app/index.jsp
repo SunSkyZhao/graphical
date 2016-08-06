@@ -16,13 +16,13 @@
     <jsp:include page="${ctx}/app/include/header.jsp"/>
     <style type="text/css">
         .side {
-            width: 15%;
+            width: 10%;
             height: 100%;
             float:left;
             padding-top: 50px;
         }
         .content {
-            width: 85%;
+            width: 90%;
             height: 90%;
             float:left;
             padding-top: 60px;
@@ -31,7 +31,7 @@
             overflow-x:auto;
         }
         .footer {
-            width: 85%;
+            width: 90%;
             height: 10%;
             text-align: center;
             float:left;

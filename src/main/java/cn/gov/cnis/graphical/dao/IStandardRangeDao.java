@@ -13,6 +13,8 @@ import java.util.List;
 @Repository
 public interface IStandardRangeDao {
 
+    List<StandardRange> selectAll();
+
     List<StandardRange> selectByType(String rangeType);
 
     StandardRange selectByPrimaryKey(String guid);

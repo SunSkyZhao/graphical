@@ -58,7 +58,7 @@ public class ConfigController {
      * @param standardRange
      * @return
      */
-    @RequestMapping(value = "standard/insert/{type}")
+    @RequestMapping(value = "standard/insert/{type}", produces = "application/json;charset=utf-8")
     @ResponseBody
     public Results insert(@PathVariable String type, StandardRange standardRange){
         standardRange.setGuid(StringUtil.getGuid());
@@ -70,7 +70,12 @@ public class ConfigController {
         }
     }
 
-    @RequestMapping(value = "standard/update")
+    /**
+     * 更新
+     * @param standardRange
+     * @return
+     */
+    @RequestMapping(value = "standard/update", produces = "application/json;charset=utf-8")
     @ResponseBody
     public Results update(StandardRange standardRange){
         if(standardRangeService.update(standardRange) != 0){
@@ -85,7 +90,7 @@ public class ConfigController {
      * @param guids
      * @return
      */
-    @RequestMapping(value = "standard/delete")
+    @RequestMapping(value = "standard/delete", produces = "application/json;charset=utf-8")
     @ResponseBody
     public Results delete(String[] guids){
         if(standardRangeService.delete(Arrays.asList(guids)) != 0){

@@ -120,6 +120,7 @@
         singleSelect: false,
         height: 550,
         toolbar: ".toolbar",
+        classes: "table table-bordered",
         striped: true,      //是否显示行间隔色
         cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         sortable: false,      //是否启用排序
@@ -163,7 +164,7 @@
     }
 
     function del(){
-        var object = $("#table-"+tab).bootstrapTable("getAllSelections");
+        var object = $("#table").bootstrapTable("getAllSelections");
         switch (object.length){
             case 0:
                 layer.msg("至少选择一行!", { offset: 0, shift: 6 });
@@ -174,9 +175,9 @@
                 $.each(object, function(index, item){
                     guids.push(item.guid);
                 });
-                $.getJSON("${ctx}/config/standard/delete?guids=" + guids, function(data){
+                $.getJSON("${ctx}/standard/delete?guids=" + guids, function(data){
                     if(eval(data).code == 1){
-                        $("#table-"+tab).bootstrapTable("refresh");
+                        $("#table").bootstrapTable("refresh");
                         layer.msg("操作成功!", { offset: 0});
                     }else{
                         layer.msg("操作失败,请重试!", { offset: 0, shift: 6 });

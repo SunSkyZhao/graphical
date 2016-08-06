@@ -18,6 +18,11 @@ public class StandardRangeServiceImpl implements IStandardRangeService {
     @Resource
     private IStandardRangeDao standardRangeDao;
 
+    @Override
+    public List<StandardRange> selectAll() {
+        return standardRangeDao.selectAll();
+    }
+
     public List<StandardRange> selectByType(String rangeType) {
         return standardRangeDao.selectByType(rangeType);
     }

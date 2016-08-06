@@ -12,6 +12,10 @@
         guid, rangeName, rangeCode, rangeType
     </sql>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM tab_standard_range ORDER BY rangeName
+    </select>
+
     <select id="selectByType" resultMap="BaseResultMap" parameterType="string">
         SELECT * FROM tab_standard_range WHERE rangeType = #{rangeType, jdbcType=VARCHAR}
         ORDER BY rangeName

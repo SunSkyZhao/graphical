@@ -4,10 +4,7 @@ import cn.gov.cnis.graphical.model.Standard;
 import cn.gov.cnis.graphical.model.StandardRange;
 import cn.gov.cnis.graphical.service.IStandardRangeService;
 import cn.gov.cnis.graphical.service.IStandardService;
-import cn.gov.cnis.graphical.utils.Constants;
-import cn.gov.cnis.graphical.utils.DateUtil;
-import cn.gov.cnis.graphical.utils.FileUtil;
-import cn.gov.cnis.graphical.utils.StringUtil;
+import cn.gov.cnis.graphical.utils.*;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +22,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -58,6 +57,7 @@ public class StandardController {
      */
     @RequestMapping(value = "add")
     public String add(){
+        List<StandardRange> list = standardRangeService.selectAll();
         return "app/standard/input";
     }
 
@@ -107,6 +107,16 @@ public class StandardController {
             attributes.addFlashAttribute("error", "添加失败!");
         }
         return "redirect:/standard";
+    }
+
+    @RequestMapping(value = "delete", produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Results delete(String[] guids){
+        if(standardService.delete(Arrays.asList(guids)) != 0){
+            return Results.success("删除成功!");
+        }else{
+            return Results.error("删除失败!");
+        }
     }
 
     /**

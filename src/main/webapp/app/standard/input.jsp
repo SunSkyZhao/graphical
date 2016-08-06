@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for="standardRange" class="col-sm-2 control-label">符号范围</label>
             <div class="col-sm-5">
-                <select class="form-control">
+                <select class="form-control" id="root">
                     <option value="symbol">国内标准</option>
                     <option value="device">国际标准</option>
                     <option value="document">国外标准</option>
