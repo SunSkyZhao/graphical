@@ -2,7 +2,7 @@ package cn.gov.cnis.graphical.dao;
 
 import cn.gov.cnis.graphical.model.Standard;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author :  Amayadream
  * @date :  2016.08.04 21:17
  */
-@Repository
+@Service
 public interface IStandardDao {
 
     List<Standard> list(@Param("start") int start, @Param("end") int end);

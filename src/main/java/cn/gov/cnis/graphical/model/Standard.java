@@ -1,5 +1,7 @@
 package cn.gov.cnis.graphical.model;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * @author :  Amayadream
  * @date :  2016.08.03 19:52
  */
+@Repository
 public class Standard implements Serializable {
 
     /** 编号 */

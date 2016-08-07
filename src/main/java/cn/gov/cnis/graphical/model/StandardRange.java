@@ -1,5 +1,7 @@
 package cn.gov.cnis.graphical.model;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * @author :  Amayadream
  * @date :  2016.08.03 20:06
  */
+@Repository
 public class StandardRange implements Serializable {
 
     /** 编号 */

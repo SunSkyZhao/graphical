@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.cnis.graphical.dao.IDictDao">
+    <resultMap id="BaseResultMap" type="cn.gov.cnis.graphical.model.Dict">
+        <id column="guid" property="guid" jdbcType="VARCHAR"/>
+        <result column="dictName" property="dictName" jdbcType="VARCHAR"/>
+        <result column="dictValue" property="dictValue" jdbcType="VARCHAR"/>
+        <result column="dictType" property="dictType" jdbcType="VARCHAR"/>
+        <result column="symbolType" property="symbolType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT guid, dictName, dictValue, dictType, symbolType FROM tab_dict
+            <where>
+                <if test="dict.dictType != null and dict.dictType != ''">
+                    dictType = #{dict.dictType}
+                </if>
+                <if test="dict.symbolType != null and dict.symbolType != ''">
+                    and symbolType = #{dict.symbolType}
+                </if>
+            </where>
+        ORDER BY dictName LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM tab_dict
+    </select>
+
+    <insert id="insert" parameterType="cn.gov.cnis.graphical.model.Dict">
+        INSERT INTO tab_dict (guid, dictName, dictValue, dictType, symbolType)
+        VALUES(#{guid, jdbcType=VARCHAR}, #{dictName, jdbcType=VARCHAR}, #{dictValue, jdbcType=VARCHAR},
+        #{dictType, jdbcType=VARCHAR},  #{symbolType, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="cn.gov.cnis.graphical.model.Dict">
+        UPDATE tab_dict
+        <set>
+            <if test="dictName != null and dictName != ''">
+                dictName = #{dictName, jdbcType=VARCHAR},
+            </if>
+            <if test="dictValue != null and dictValue != ''">
+                dictValue = #{dictValue, jdbcType=VARCHAR},
+            </if>
+            <if test="dictType != null and dictType != ''">
+                dictType = #{dictType, jdbcType=VARCHAR},
+            </if>
+            <if test="symbolType != null and symbolType != ''">
+                symbolType = #{symbolType, jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE guid = #{guid, jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM tab_dict
+        <where>
+            guid in
+            <foreach collection="guids" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+</mapper>
