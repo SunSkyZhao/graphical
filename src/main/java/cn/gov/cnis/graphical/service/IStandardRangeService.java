@@ -10,8 +10,6 @@ import java.util.List;
  */
 public interface IStandardRangeService {
 
-    List<StandardRange> selectAll();
-
     List<StandardRange> selectByType(String rangeType);
 
     StandardRange selectByPrimaryKey(String guid);

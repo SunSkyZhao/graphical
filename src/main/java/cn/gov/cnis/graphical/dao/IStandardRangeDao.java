@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public interface IStandardRangeDao {
 
-    List<StandardRange> selectAll();
+    List<StandardRange> selectAll(String rangeType);
 
     List<StandardRange> selectByType(String rangeType);
 

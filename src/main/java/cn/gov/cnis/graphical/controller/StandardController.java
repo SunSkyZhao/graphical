@@ -58,9 +58,12 @@ public class StandardController {
      * @return
      */
     @RequestMapping(value = "add")
-    public String add(){
-        List<StandardRange> list = standardRangeService.selectAll();
-        return "app/standard/input";
+    public ModelAndView add(){
+        ModelAndView view = new ModelAndView("app/standard/input");
+        view.addObject("domestic", standardRangeService.selectByType("domestic"));
+        view.addObject("international", standardRangeService.selectByType("international"));
+        view.addObject("abroad", standardRangeService.selectByType("abroad"));
+        return view;
     }
 
     /**

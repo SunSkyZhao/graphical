@@ -36,19 +36,50 @@
         <div class="form-group">
             <label for="standardRange" class="col-sm-2 control-label">符号范围</label>
             <div class="col-sm-5">
-                <select class="form-control" id="root">
-                    <option value="symbol">国内标准</option>
-                    <option value="device">国际标准</option>
-                    <option value="document">国外标准</option>
+                <select class="form-control" id="root" onchange="rootChange(this);">
+                    <option value="domestic">国内标准</option>
+                    <option value="international">国际标准</option>
+                    <option value="abroad">国外标准</option>
                 </select>
             </div>
             <div class="col-sm-5">
                 <select class="form-control" id="standardRange" name="standardRange">
-                    <option value="symbol">符号用标志</option>
-                    <option value="device">设备用标志</option>
-                    <option value="document">技术文件用标志</option>
                 </select>
             </div>
+            <script>
+                setStandardRange("domestic");
+                function rootChange(that){
+                    setStandardRange($(that).val());
+                }
+                function setStandardRange(root){
+                    $("#standardRange").html("");
+                    var html = '';
+                    switch (root){
+                        case "domestic":
+                            <c:if test="${not empty domestic}">
+                                <c:forEach items="${domestic}" var="item" varStatus="index">
+                                html += '<option value="${item.guid}">${item.rangeName}</option>';
+                                </c:forEach>
+                            </c:if>
+                            break;
+                        case "international":
+                            <c:if test="${not empty international}">
+                                <c:forEach items="${international}" var="item" varStatus="index">
+                                    html += '<option value="${item.guid}">${item.rangeName}</option>';
+                                </c:forEach>
+                            </c:if>
+                            break;
+                        case "abroad":
+                            <c:if test="${not empty abroad}">
+                                <c:forEach items="${abroad}" var="item" varStatus="index">
+                                    html += '<option value="${item.guid}">${item.rangeName}</option>';
+                                </c:forEach>
+                            </c:if>
+                            break;
+                    }
+                    $("#standardRange").html(html);
+                }
+            </script>
         </div>
         <div class="form-group">
             <label for="identifier" class="col-sm-2 control-label">标准编号</label>
@@ -71,7 +102,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">标准状态</label>
             <label class="checkbox-inline">
-                <input type="radio" id="status-active" value="active" name="status"> 现行
+                <input type="radio" id="status-active" value="active" name="status" checked> 现行
             </label>
             <label class="checkbox-inline">
                 <input type="radio" id="status-replaced" value="replaced" name="status"> 被代替
