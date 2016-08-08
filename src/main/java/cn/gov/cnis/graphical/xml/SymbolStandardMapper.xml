@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.cnis.graphical.dao.ISymbolStandardDao">
+    <resultMap id="BaseResultMap" type="cn.gov.cnis.graphical.model.SymbolStandard">
+        <id column="guid" property="guid" jdbcType="VARCHAR"/>
+        <result column="chineseName" property="chineseName" jdbcType="VARCHAR"/>
+        <result column="foreignName" property="foreignName" jdbcType="VARCHAR"/>
+        <result column="standardId" property="standardId" jdbcType="VARCHAR"/>
+        <result column="symbolId" property="symbolId" jdbcType="VARCHAR"/>
+        <result column="symbolType" property="symbolType" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="registerId" property="registerId" jdbcType="VARCHAR"/>
+        <result column="keyword" property="keyword" jdbcType="VARCHAR"/>
+        <result column="symbolTips" property="symbolTips" jdbcType="VARCHAR"/>
+        <result column="changeTips" property="changeTips" jdbcType="VARCHAR"/>
+
+        <result column="shape1" property="shape1" jdbcType="VARCHAR"/>
+        <result column="shape2" property="shape2" jdbcType="VARCHAR"/>
+        <result column="shape3" property="shape3" jdbcType="VARCHAR"/>
+        <result column="color1" property="color1" jdbcType="VARCHAR"/>
+        <result column="color2" property="color2" jdbcType="VARCHAR"/>
+
+        <result column="fileGif" property="fileGif" jdbcType="VARCHAR"/>
+        <result column="fileBmp" property="fileBmp" jdbcType="VARCHAR"/>
+        <result column="filePdf" property="filePdf" jdbcType="VARCHAR"/>
+        <result column="fileJpg" property="fileJpg" jdbcType="VARCHAR"/>
+        <result column="fileAi" property="fileAi" jdbcType="VARCHAR"/>
+        <result column="fileEps" property="fileEps" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT guid, chineseName, foreignName, standardId, symbolId FROM tab_symbol_standard
+        <where>
+            <if test="symbol.symbolType != null and symbol.symbolType != ''">
+                symbolType = #{symbol.symbolType}
+            </if>
+        </where>
+        ORDER BY dictName LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM tab_symbol_standard
+        <where>
+            <if test="symbolType != null and symbolType != ''">
+                symbolType = #{symbolType, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="cn.gov.cnis.graphical.model.SymbolStandard">
+        INSERT INTO tab_symbol_standard (guid, chineseName, foreignName, standardId, symbolId, symbolType, status, registerId,
+        keyword, symbolTips, changeTips, shape1, shape2, shape3, color1, color2, fileGif, fileBmp, filePdf, fileJpg, fileAi, fileEps)
+        VALUES(#{guid, jdbcType=VARCHAR}, #{chineseName, jdbcType=VARCHAR}, #{foreignName, jdbcType=VARCHAR}, #{standardId, jdbcType=VARCHAR}, #{symbolId, jdbcType=VARCHAR},
+        #{symbolType, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, #{registerId, jdbcType=VARCHAR}, #{keyword, jdbcType=VARCHAR}, #{symbolTips, jdbcType=VARCHAR},
+        #{changeTips, jdbcType=VARCHAR}, #{shape1, jdbcType=VARCHAR}, #{shape2, jdbcType=VARCHAR}, #{shape3, jdbcType=VARCHAR}, #{color1, jdbcType=VARCHAR},
+        #{color2, jdbcType=VARCHAR}, #{fileGif, jdbcType=VARCHAR}, #{fileBmp, jdbcType=VARCHAR}, #{filePdf, jdbcType=VARCHAR}, #{fileJpg, jdbcType=VARCHAR},
+        #{fileAi, jdbcType=VARCHAR}, #{fileEps, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="cn.gov.cnis.graphical.model.SymbolStandard">
+        UPDATE tab_symbol_standard
+        <set>
+            <if test="chineseName != null and chineseName != ''">
+                chineseName = #{chineseName, jdbcType=VARCHAR},
+            </if>
+            <if test="foreignName != null and foreignName != ''">
+                foreignName = #{foreignName, jdbcType=VARCHAR},
+            </if>
+            <if test="standardId != null and standardId != ''">
+                standardId = #{standardId, jdbcType=VARCHAR},
+            </if>
+            <if test="symbolId != null and symbolId != ''">
+                symbolId = #{symbolId, jdbcType=VARCHAR},
+            </if>
+            <if test="symbolType != null and symbolType != ''">
+                symbolType = #{symbolType, jdbcType=VARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status, jdbcType=VARCHAR},
+            </if>
+            <if test="registerId != null and registerId != ''">
+                registerId = #{registerId, jdbcType=VARCHAR},
+            </if>
+            <if test="keyword != null and keyword != ''">
+                keyword = #{keyword, jdbcType=VARCHAR},
+            </if>
+            <if test="symbolTips != null and symbolTips != ''">
+                symbolTips = #{symbolTips, jdbcType=VARCHAR},
+            </if>
+            <if test="changeTips != null and changeTips != ''">
+                changeTips = #{changeTips, jdbcType=VARCHAR},
+            </if>
+            <if test="shape1 != null and shape1 != ''">
+                shape1 = #{shape1, jdbcType=VARCHAR},
+            </if>
+            <if test="shape2 != null and shape2 != ''">
+                shape2 = #{shape2, jdbcType=VARCHAR},
+            </if>
+            <if test="shape3 != null and shape3 != ''">
+                shape3 = #{shape3, jdbcType=VARCHAR},
+            </if>
+            <if test="color1 != null and color1 != ''">
+                color1 = #{color1, jdbcType=VARCHAR},
+            </if>
+            <if test="color2 != null and color2 != ''">
+                color2 = #{color2, jdbcType=VARCHAR},
+            </if>
+            <if test="fileGif != null and fileGif != ''">
+                fileGif = #{fileGif, jdbcType=VARCHAR},
+            </if>
+            <if test="fileBmp != null and fileBmp != ''">
+                fileBmp = #{fileBmp, jdbcType=VARCHAR},
+            </if>
+            <if test="filePdf != null and filePdf != ''">
+                filePdf = #{filePdf, jdbcType=VARCHAR},
+            </if>
+            <if test="fileJpg != null and fileJpg != ''">
+                fileJpg = #{fileJpg, jdbcType=VARCHAR},
+            </if>
+            <if test="fileAi != null and fileAi != ''">
+                fileAi = #{fileAi, jdbcType=VARCHAR},
+            </if>
+            <if test="fileEps != null and fileEps != ''">
+                fileEps = #{fileEps, jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE guid = #{guid, jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM tab_symbol_standard
+        <where>
+            guid in
+            <foreach collection="guids" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+</mapper>

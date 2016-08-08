@@ -53,14 +53,14 @@
             <form action="#" method="post" id="add-form">
                 <div class="modal-body">
                     <input type="hidden" id="guid" name="guid">
-                    <input type="hidden" id="rangeType" name="rangeType">
+                    <input type="hidden" id="dictType" name="dictType">
                     <div class="form-group">
-                        <label for="rangeName">标准名称</label>
-                        <input type="text" class="form-control" id="rangeName" name="rangeName" placeholder="请输入标准名称,最大长度10位" required>
+                        <label for="dictName">特征名称</label>
+                        <input type="text" class="form-control" id="dictName" name="dictName" placeholder="请输入标准名称,最大长度10位" required>
                     </div>
                     <div class="form-group">
-                        <label for="rangeCode">标准代码</label>
-                        <input type="text" class="form-control" id="rangeCode" name="rangeCode" placeholder="请输入标准代码,最大长度30位" required>
+                        <label for="dictValue">特征值</label>
+                        <input type="text" class="form-control" id="dictValue" name="dictValue" placeholder="请输入标准代码,最大长度30位" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -119,7 +119,7 @@
                 {checkbox: true},
                 {title: "编号", filed: "guid", visible: false},
                 {title: "名称", field: "dictName", align: "center"},
-                {title: "值", field: "dictType", align: "center"},
+                {title: "值", field: "dictValue", align: "center"},
             ]
         })
     }
@@ -139,10 +139,10 @@
                 break;
             case 1:
                 $("#guid").val(object[0].guid);
-                $("#rangeType").val(object[0].rangeType);
-                $("#rangeName").val(object[0].rangeName);
-                $("#rangeCode").val(object[0].rangeCode);
-                $("#add-form").attr("action", "${ctx}/config/standard/update");
+                $("#dictName").val(object[0].dictName);
+                $("#dictType").val(object[0].dictType);
+                $("#dictValue").val(object[0].dictValue);
+                $("#add-form").attr("action", "${ctx}/dict/update");
                 $('#add-modal').modal({});
                 break;
             default:
@@ -162,7 +162,7 @@
                 $.each(object, function(index, item){
                     guids.push(item.guid);
                 });
-                $.getJSON("${ctx}/config/standard/delete?guids=" + guids, function(data){
+                $.getJSON("${ctx}/dict/delete?guids=" + guids, function(data){
                     if(eval(data).code == 1){
                         $("#table-"+tab).bootstrapTable("refresh");
                         layer.msg("操作成功!", { offset: 0});
@@ -181,9 +181,9 @@
             type: "post",
             data: {
                 guid: $("#guid").val(),
-                rangeType: $("#rangeType").val(),
-                rangeName: $("#rangeName").val(),
-                rangeCode: $("#rangeCode").val()
+                dictName: $("#dictName").val(),
+                dictValue: $("#dictValue").val(),
+                dictType: $("#dictType").val()
             },
             success: function(data){
                 if(eval(data).code == 1){
@@ -203,9 +203,9 @@
 
     function clearForm(){
         $("#guid").val("");
-        $("#rangeType").val("");
-        $("#rangeName").val("");
-        $("#rangeCode").val("");
+        $("#dictName").val("");
+        $("#dictValue").val("");
+        $("#dictType").val("");
     }
 </script>
 </body>

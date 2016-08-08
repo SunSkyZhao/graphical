@@ -24,6 +24,14 @@
 
     <select id="count" resultType="long">
         SELECT COUNT(*) FROM tab_dict
+        <where>
+            <if test="dictType != null and dictType != ''">
+                dictType = #{dictType}
+            </if>
+            <if test="symbolType != null and symbolType != ''">
+                and symbolType = #{symbolType}
+            </if>
+        </where>
     </select>
 
     <insert id="insert" parameterType="cn.gov.cnis.graphical.model.Dict">
