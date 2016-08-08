@@ -95,9 +95,9 @@
     <div class="line"></div>
     <dl class="system_log">
         <dt>标准符号<img src="${ctx}/static/source/image/left/select_xl01.png"></dt>
-        <dd class="first_dd"><a href="javascript:;" class="menu" name="${ctx}/demo">标志用符号</a></dd>
-        <dd><a href="javascript:;" class="menu">设备用符号</a></dd>
-        <dd><a href="javascript:;" class="menu">技术文件用符号</a></dd>
+        <dd class="first_dd"><a href="javascript:;" class="menu" name="${ctx}/symbol/standard/list/sign">标志用符号</a></dd>
+        <dd><a href="javascript:;" class="menu" name="${ctx}/symbol/standard/list/device">设备用符号</a></dd>
+        <dd><a href="javascript:;" class="menu" name="${ctx}/symbol/standard/list/document">技术文件用符号</a></dd>
     </dl>
 
     <dl class="custom">

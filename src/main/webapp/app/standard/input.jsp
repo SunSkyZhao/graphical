@@ -27,7 +27,7 @@
             <label for="symbolRange" class="col-sm-2 control-label">符号范围</label>
             <div class="col-sm-10">
                 <select class="form-control" id="symbolRange" name="symbolRange">
-                    <option value="symbol" name="">符号用标志</option>
+                    <option value="sign">符号用标志</option>
                     <option value="device">设备用标志</option>
                     <option value="document">技术文件用标志</option>
                 </select>

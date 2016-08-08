@@ -14,9 +14,9 @@ public class Constants {
     public static final String international = "国际";
     public static final String abroad = "国外";
 
-    public static final String symbol = "符号用标志";
-    public static final String device = "设备用标志";
-    public static final String document = "技术文件用标志";
+    public static final String sign = "标志用符号";
+    public static final String device = "设备用符号";
+    public static final String document = "技术文件用符号";
 
     public static final String active = "现行";
     public static final String replaced = "被代替";
@@ -41,14 +41,14 @@ public class Constants {
     public static String getSymbol(String code){
         String symbol = "";
         switch (code){
-            case "symbol":
-                symbol = "符号用标志";
+            case "sign":
+                symbol = "标志用符号";
                 break;
             case "device":
-                symbol = "设备用标志";
+                symbol = "设备用符号";
                 break;
             case "document":
-                symbol =  "技术文件用标志";
+                symbol =  "技术文件用符号";
                 break;
         }
         return symbol;
